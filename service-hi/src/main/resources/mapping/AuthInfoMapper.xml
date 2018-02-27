@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hpp.servicehi.dao.AuthInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hpp.servicehi.model.AuthInfo" >
+    <id column="auth_id" property="authId" jdbcType="INTEGER" />
+    <result column="appid" property="appid" jdbcType="VARCHAR" />
+    <result column="appid_md5" property="appidMd5" jdbcType="VARCHAR" />
+    <result column="appsecret" property="appsecret" jdbcType="VARCHAR" />
+    <result column="appsecret_md5" property="appsecretMd5" jdbcType="VARCHAR" />
+    <result column="redirect_uri" property="redirectUri" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    auth_id, appid, appid_md5, appsecret, appsecret_md5, redirect_uri
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from auth_info
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from auth_info
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hpp.servicehi.model.AuthInfo" >
+    insert into auth_info (auth_id, appid, appid_md5, 
+      appsecret, appsecret_md5, redirect_uri
+      )
+    values (#{authId,jdbcType=INTEGER}, #{appid,jdbcType=VARCHAR}, #{appidMd5,jdbcType=VARCHAR}, 
+      #{appsecret,jdbcType=VARCHAR}, #{appsecretMd5,jdbcType=VARCHAR}, #{redirectUri,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hpp.servicehi.model.AuthInfo" >
+    insert into auth_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        auth_id,
+      </if>
+      <if test="appid != null" >
+        appid,
+      </if>
+      <if test="appidMd5 != null" >
+        appid_md5,
+      </if>
+      <if test="appsecret != null" >
+        appsecret,
+      </if>
+      <if test="appsecretMd5 != null" >
+        appsecret_md5,
+      </if>
+      <if test="redirectUri != null" >
+        redirect_uri,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authId != null" >
+        #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="appid != null" >
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appidMd5 != null" >
+        #{appidMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecretMd5 != null" >
+        #{appsecretMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="redirectUri != null" >
+        #{redirectUri,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hpp.servicehi.model.AuthInfo" >
+    update auth_info
+    <set >
+      <if test="appid != null" >
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appidMd5 != null" >
+        appid_md5 = #{appidMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        appsecret = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecretMd5 != null" >
+        appsecret_md5 = #{appsecretMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="redirectUri != null" >
+        redirect_uri = #{redirectUri,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hpp.servicehi.model.AuthInfo" >
+    update auth_info
+    set appid = #{appid,jdbcType=VARCHAR},
+      appid_md5 = #{appidMd5,jdbcType=VARCHAR},
+      appsecret = #{appsecret,jdbcType=VARCHAR},
+      appsecret_md5 = #{appsecretMd5,jdbcType=VARCHAR},
+      redirect_uri = #{redirectUri,jdbcType=VARCHAR}
+    where auth_id = #{authId,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from auth_info
+  </select>
+</mapper>
