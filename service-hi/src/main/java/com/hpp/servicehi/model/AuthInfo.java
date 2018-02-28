@@ -13,6 +13,8 @@ public class AuthInfo {
 
     private String redirectUri;
 
+    private String state;
+
     public Integer getAuthId() {
         return authId;
     }
@@ -59,5 +61,13 @@ public class AuthInfo {
 
     public void setRedirectUri(String redirectUri) {
         this.redirectUri = redirectUri == null ? null : redirectUri.trim();
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
     }
 }

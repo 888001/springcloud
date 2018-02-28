@@ -2,7 +2,7 @@ package com.hpp.servicehi.dao;
 
 import com.hpp.servicehi.model.AuthInfo;
 
-import java.util.List;
+import java.util.Map;
 
 public interface AuthInfoMapper {
     int deleteByPrimaryKey(Integer authId);
@@ -16,5 +16,6 @@ public interface AuthInfoMapper {
     int updateByPrimaryKeySelective(AuthInfo record);
 
     int updateByPrimaryKey(AuthInfo record);
-    List<AuthInfo> selectAll();
+    AuthInfo selectAuthInfoByAppidMD5(Map map);
+    AuthInfo selectAuthInfoByState(Map map);
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @作者：胡鹏鹏
@@ -16,13 +17,14 @@ import java.util.List;
 public class WxAuthServiceImpl implements WxAuthService {
     @Autowired
     AuthInfoMapper authInfoMapper;
+
     @Override
-    public AuthInfo selectByPrimaryKey(Integer authId) {
-        return authInfoMapper.selectByPrimaryKey(authId);
+    public AuthInfo selectAuthInfoByAppidMD5(Map map) {
+        return authInfoMapper.selectAuthInfoByAppidMD5(map);
     }
 
     @Override
-    public List<AuthInfo> selectAll() {
-        return authInfoMapper.selectAll();
+    public AuthInfo selectAuthInfoByState(Map map) {
+        return authInfoMapper.selectAuthInfoByState(map);
     }
 }
