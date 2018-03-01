@@ -3,6 +3,7 @@ package com.hpp.redis.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -23,17 +24,17 @@ public class GlobleVaribleService {
     @Autowired
     RestTemplate restTemplate ;
     @Autowired
-    StringRedisTemplate stringRedisTemplate ;
+    RedisTemplate redisTemplate ;
     public void select(){
         String appid = "appid";
 
-        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-        if (stringRedisTemplate.hasKey(appid)) {
+        ValueOperations<String, String> ops = redisTemplate.opsForValue();
+        if (redisTemplate.hasKey(appid)) {
             logger.info("redis 存在 appid");
             String a = ops.get(appid);
         } else {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            logger.info("redis 不存在appid ,已经更新" + df.format(System.currentTimeMillis()));
+            logger.info("redis 不存在appid ,已经更新"+df.format(System.currentTimeMillis()));
             ops.set("appid","aaa",7000, TimeUnit.SECONDS);
         }
     }

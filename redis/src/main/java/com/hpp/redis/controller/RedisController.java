@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class RedisController {
-    @Autowired
+   @Autowired
     RedisService redisService ;
     @Autowired
     RedisTemplate redisTemplate;
     @RequestMapping("/get")
     public void get(){
-        boolean b = redisTemplate.hasKey("appid");
-        if(b){
-            redisService.set("appid","xwsaaaaaaaaaa");
+        boolean b = redisTemplate.hasKey("appida");
+        if(!b){
+            redisService.set("appida","88745454545");
         }
-        boolean c = redisTemplate.hasKey("appid");
+        String key = (String) redisService.get("appida");
 
     }
 

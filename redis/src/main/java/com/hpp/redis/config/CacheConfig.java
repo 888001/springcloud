@@ -18,7 +18,6 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-
 /**
  * @作者：胡鹏鹏
  * @创建时间：2018/3/1 12:57
@@ -28,7 +27,7 @@ import java.util.Arrays;
 @EnableCaching
 public class CacheConfig extends CachingConfigurerSupport {
     @Autowired
-    RestTemplateBuilder restTemplateBuilder ;
+    private RestTemplateBuilder restTemplateBuilder ;
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
